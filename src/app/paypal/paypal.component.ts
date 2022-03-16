@@ -54,6 +54,7 @@ export class PaypalComponent implements OnInit {
         this.items = data.map((e) => {
           return { idd: e.payload.doc.id, ...(e.payload.doc.data() as ICart) };
         });
+        if (this.items) this.getTotal(this.items);
         // this.cartservce.cartItems.subscribe((data) => {
 
         //   this.items = data;

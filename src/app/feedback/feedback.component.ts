@@ -49,7 +49,7 @@ export class FeedbackComponent implements OnInit {
       feedback: feedback,
       userID: localStorage.getItem('uid'),
     };
-   // this.feedBackServc.addfeedback(data);
+   this.feedBackServc.addfeedback(data);
   }
   ss(fed:string){
     console.log(fed);

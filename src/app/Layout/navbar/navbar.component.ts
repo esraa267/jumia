@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
   searchitem: string = '';
   islogged: boolean = false;
   isUser: boolean = false;
-uid:any
+  uid: any;
   private startat = new Subject<string>();
   private startobservable = this.startat.asObservable();
 
@@ -34,7 +34,7 @@ uid:any
   flag: string = '';
   id!: any;
   userName: string = '';
-  x!:Subscription
+  x!: Subscription;
   constructor(
     private ProductsService: ProductsService,
     private cartServc: CartServiceService,
@@ -44,33 +44,35 @@ uid:any
   ) {}
 
   ngOnInit(): void {
-   
     this.ProductsService.lang.subscribe((e) => {
       this.flag = e;
     });
-    
+
     this.auth.User?.subscribe((user) => {
       if (user == true) {
-        this.uid=localStorage.getItem('uid')
+        this.uid = localStorage.getItem('uid');
         console.log(user);
         this.isUser = true;
-        this. x=this.cartServc
+        this.x = this.cartServc
           .getCartDtataFireStor(localStorage.getItem('uid'))
-          .subscribe((e) => {
-            this.itemIncart = e.length;
+          .subscribe((el) => {
+           
+            var num = 0;
+            el.forEach((e) => (num += e.payload.doc.data().subtotal!));
+            this.itemIncart = num;
           });
       } else {
-      
-        this. x.unsubscribe();
+        
         this.isUser = false;
         this.cartServc.cartItems.subscribe((el: ICart[]) => {
-          console.log(el);
+          console.log(el.length);
 
           var num = 0;
           el.forEach((e) => (num += e.subtotal!));
-          this.itemIncart = el.length;
+          this.itemIncart = num;
           console.log(el);
         });
+        this.x.unsubscribe();
       }
     });
 
@@ -85,8 +87,8 @@ uid:any
       });
     });
     this.user.getUserByID(localStorage.getItem('uid')!).subscribe((e) => {
-        this.userName = e?.FirstName!;
-      });
+      this.userName = e?.FirstName!;
+    });
     console.log(this.itemIncart);
   }
   toggleSideBar() {

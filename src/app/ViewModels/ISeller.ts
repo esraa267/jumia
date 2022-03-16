@@ -1,14 +1,14 @@
 import { DocumentReference } from "@angular/fire/compat/firestore";
 
 export interface ISeller {
-   
+    sellerid?:string,
     FirstName?:string,
     LastName?:string,
    CompanyName?:string,
     Email?:string,
-    Rate:number,
-    IsActive:boolean,
-    IsNew:boolean,
+    Rate?:number,
+    IsActive?:boolean,
+    IsNew?:boolean,
     Password?:string,
     Phone?:string,
     Address?:[

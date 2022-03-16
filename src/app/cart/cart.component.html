@@ -1,12 +1,13 @@
-<div [hidden]="alert==''"
-class="alert text-center  p-1 fs-5 alertApp"
-role="alert">
-<i class="fas fa-check-circle px-3"></i>
- <span *ngIf="alert=='updated'">Product quantity has been updated</span>
- <span *ngIf="alert=='removed'">Product  removed  successfully</span>
+<div
+  [hidden]="alert == ''"
+  class="alert text-center p-1 fs-5 alertApp"
+  role="alert"
+>
+  <i class="fas fa-check-circle px-3"></i>
+  <span *ngIf="alert == 'updated'">Product quantity has been updated</span>
+  <span *ngIf="alert == 'removed'">Product removed successfully</span>
 </div>
 <div class="container-sm container-md container-lg">
-
   <div class="row">
     <div class="empty" *ngIf="items.length < 1">
       <div class="info">
@@ -41,24 +42,26 @@ role="alert">
               </h3>
               <!-- <h3 *ngIf="flag == 'rtl'">{{item.DescriptionAr}}</h3> -->
             </div>
-            <div> available Quantity: {{item.Quantity}}</div>
+            <!-- <div> available Quantity: {{item.Quantity}}</div> -->
             <div style="width: 30%">
               <div style="font-size: 1rem; font-weight: bold">
-                Price : {{ item.Price | currency
-                }}<span class="px-2" *ngIf="flag == 'rtl'">جنية</span
-                ><span class="px-2" *ngIf="flag == 'ltr'">ُEGP</span>
+                Price :
+                <span class="px-2" >{{
+                  item.Price | currency: "EGP"
+                }}</span
+                ><span class="px-2" *ngIf="flag == 'ltr'"></span>
               </div>
               <div style="font-size: 1rem; font-weight: bold">
-                subtotal: {{ item.Price! * item.subtotal! | currency
-                }}<span class="px-2" *ngIf="flag == 'rtl'">جنية</span
-                ><span class="px-2" *ngIf="flag == 'ltr'">ُEGP</span>
+                total:<span class="px-2"> {{ item.Price! * item.subtotal! | currency: "EGP"
+                }}</span
+                ><span class="px-2" *ngIf="flag == 'ltr'"></span>
               </div>
             </div>
           </a>
           <footer style="justify-content: space-between" class="d-flex py-2">
             <button
-              (click)="onDelete(i,item?.idd)"
-                style="color: white; background-color: rgb(246, 139, 30)"
+              (click)="onDelete(i, item?.idd)"
+              style="color: white; background-color: rgb(246, 139, 30)"
               class="btn shadow"
             >
               <i class="fas fa-trash-alt"></i>
@@ -67,22 +70,21 @@ role="alert">
             </button>
             <form class="d-flex">
               <button
-              (click)="suppTotal(item,i)"
+                (click)="suppTotal(item, i)"
                 style="background-color: rgb(246, 139, 30)"
                 class="shadow btn"
-                [disabled]="item.subtotal==1"
+                [disabled]="item.subtotal == 1"
               >
                 <i style="color: #fff" class="fas fa-minus"></i>
-
               </button>
               <span style="text-align: center" class="m-3">{{
                 item.subtotal
               }}</span>
               <button
-              (click)="updateTotal(item)"
+                (click)="updateTotal(item)"
                 style="background-color: rgb(246, 139, 30)"
                 class="shadow btn"
-                [disabled]="item.subtotal==item.Quantity"
+                [disabled]="item.subtotal == item.Quantity"
               >
                 <i style="color: #fff" class="fas fa-plus"></i>
               </button>
@@ -117,7 +119,6 @@ role="alert">
           <div class="pt-1" style="border-top: 1px solis #ededed">
             <!-- (click)="PlaceOrder(items)" -->
             <button
-
               [routerLink]="['/paypal']"
               class="btn shadow"
               style="
@@ -125,7 +126,6 @@ role="alert">
                 width: 100%;
                 color: #fff;
               "
-
             >
               <span class="px-2" *ngIf="flag == 'ltr'">Check out</span>
               <span class="px-2" *ngIf="flag == 'rtl'">شراء</span>

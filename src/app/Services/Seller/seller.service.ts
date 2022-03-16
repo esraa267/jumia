@@ -13,7 +13,7 @@ import { ISeller } from 'src/app/ViewModels/ISeller';
   providedIn: 'root',
 })
 export class SellerService {
-  seller = new BehaviorSubject<IUser>({});
+  seller = new BehaviorSubject<ISeller>({});
   //products = new BehaviorSubject<IProduct>();
   products: IProduct[] = [];
   constructor(private db: AngularFirestore, private fs: Firestore) {}
@@ -41,7 +41,7 @@ export class SellerService {
           sellerid: s.id,
           ...s.data(),
         };
-        this.seller.next(seller as IUser);
+        this.seller.next(seller as ISeller);
       })
     );
   }

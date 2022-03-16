@@ -11,6 +11,7 @@ import { doc, Firestore } from '@angular/fire/firestore';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { IFeedBack } from '../ViewModels/ifeed-back';
 import { FavouriteListService } from '../Services/favourite/favourite-list.service';
+import { ISeller } from '../ViewModels/ISeller';
 
 @Component({
   selector: 'app-product-details',
@@ -28,7 +29,7 @@ export class ProductDetailsComponent implements OnInit {
   flag: boolean = false;
   qntflag: boolean = false;
   num!: number;
-  seller!: IUser;
+  seller!: ISeller;
   flaglang: string = '';
   favList: [] = [];
   uid:boolean=false;
@@ -87,7 +88,7 @@ export class ProductDetailsComponent implements OnInit {
           let y = this.sellerServc.getSeller(prod?.SellerID!).subscribe(() => {
             this.sellerServc.seller.subscribe((el) => {
               this.product = prod!;
-              this.seller = el;
+              this.seller = el  ;
               //////////////////////
             });
           });

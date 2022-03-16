@@ -140,7 +140,7 @@ export class CartServiceService {
     this.db.collection(`users/${uid}/cart`).add(cart);
   }
   getCartDtataFireStor(uid: any) {
-    return this.db.collection(`users/${uid}/cart`).snapshotChanges();
+    return this.db.collection<ICart>(`users/${uid}/cart`).snapshotChanges();
   }
   removeCartItemFirstore(did: any) {
     

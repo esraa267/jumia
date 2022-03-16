@@ -4,9 +4,7 @@ import {
   DocumentReference,
 } from '@angular/fire/compat/firestore';
 import IProduct from '../../ViewModels/Iproduct';
-import IUser from '../../ViewModels/IUser';
 import { Router } from '@angular/router';
-import { ICart } from 'src/app/ViewModels/icart';
 import { Category } from 'src/app/ViewModels/category';
 import { BehaviorSubject, from } from 'rxjs';
 import * as fir from 'firebase/compat/app';
@@ -34,7 +32,16 @@ export class ProductsService {
     this.lang.next(this.getLanguage());
   }
   getLanguage() {
-    return JSON.parse(localStorage.getItem('lang') || '');
+    console.log(localStorage.getItem('lang'));
+    
+  if(!localStorage.getItem('lang')){
+    localStorage.setItem('lang',JSON.stringify('ltr'))
+    return JSON.parse(localStorage.getItem('lang') || ' ');
+  }
+  else{
+    return JSON.parse(localStorage.getItem('lang') || ' ');
+  }
+    
   }
   // taqwa
 

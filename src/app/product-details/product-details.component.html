@@ -1,10 +1,34 @@
-<div *ngIf="flag" class="alert text-center p-1 fs-5 alertApp" role="alert">
+<div
+  *ngIf="flag && flaglang == 'ltr'"
+  class="alert text-center p-1 fs-5 alertApp"
+  role="alert"
+>
   <i class="fas fa-check-circle px-3"></i>
   Product added successfully
 </div>
-<div *ngIf="qntflag" class="alert text-center p-1 fs-5 alertApp" role="alert">
+<div
+  *ngIf="flag && flaglang == 'rtl'"
+  class="alert text-center p-1 fs-5 alertApp"
+  role="alert"
+>
+  <i class="fas fa-check-circle px-3"></i>
+  تم اضافة المنتج بنجاح
+</div>
+<div
+  *ngIf="qntflag && flaglang == 'ltr'"
+  class="alert text-center p-1 fs-5 alertApp2"
+  role="alert"
+>
   <i class="fas fa-check-circle px-3"></i>
   Oops! that is last item
+</div>
+<div
+  *ngIf="qntflag && flaglang == 'rtl'"
+  class="alert text-center p-1 fs-5 alertApp2"
+  role="alert"
+>
+  <i class="fas fa-check-circle px-3"></i>
+  اخر قطعه
 </div>
 <div class="container-sm container-md container-lg">
   <div class="row mt-2 pt-1" style="display: flex; flex-wrap: wrap">
@@ -64,7 +88,7 @@
           <div class="px-2">
             <div class="pt-1" style="border-bottom: 1px solis #ededed">
               <button
-              [disabled]="btnFlag"
+                [disabled]="btnFlag"
                 type="button"
                 (click)="addToCart(product)"
                 style="
@@ -83,7 +107,7 @@
             </div>
           </div>
           <!--promotion-->
-          <section style="position: relative" class="mt-3">
+          <!-- <section style="position: relative" class="mt-3">
             <h5 class="title-h headline pt-4">PROMOTIONS</h5>
             <div class="py-3">
               <a class="d-flex text-decoration-none text-dark py-1">
@@ -100,7 +124,7 @@
                 customers only</a
               >
             </div>
-          </section>
+          </section> -->
         </div>
         <!--start third col i first col-->
       </div>
@@ -118,8 +142,19 @@
           "
           class="d-flex justify-content-between p-2 text-decoration-none text-dark"
         >
-          <h2 style="font-weight: bold; font-size: 0.8rem" class="m-0">
+          <h2
+            *ngIf="flaglang == 'ltr'"
+            style="font-weight: bold; font-size: 0.8rem"
+            class="m-0"
+          >
             Seller information
+          </h2>
+          <h2
+            *ngIf="flaglang == 'rtl'"
+            style="font-weight: bold; font-size: 0.8rem"
+            class="m-0"
+          >
+            معلومات البائع
           </h2>
           <svg
             width="10%"
@@ -137,25 +172,38 @@
           style="border-bottom: 1px solid lightgrey; font-weight: 500"
         >
           <p style="font-weight: 700; margin: 0; color: #f68b1e">
-            {{ seller.FirstName }}
+            {{ seller.CompanyName }}({{ seller.FirstName }})
           </p>
         </div>
         <div class="p-2" style="position: relative">
-          <h2 style="font-weight: bold; font-size: 1.2rem" class="mb-1">
+          <h2
+            *ngIf="flaglang == 'ltr'"
+            style="font-weight: bold; font-size: 1.2rem"
+            class="mb-1"
+          >
             Seller Performance
+          </h2>
+          <h2
+            *ngIf="flaglang == 'rtl'"
+            style="font-weight: bold; font-size: 1.2rem"
+            class="mb-1"
+          >
+            أداء البائع
           </h2>
           <div>
             <i class="fas fa-star text-primary"></i>
-            <span>Order Fulfillment Rate:</span
-            ><span class="fw-bold">Good</span>
+            <span *ngIf="flaglang == 'ltr'">Order Fulfillment Rate:</span>
+            <span *ngIf="flaglang == 'rtl'">معدل تنفيذ الطلب:</span>
+            <span *ngIf="flaglang == 'ltr'" class="fw-bold">Good</span>
+            <span *ngIf="flaglang == 'rtl'" class="fw-bold">جيد</span>
           </div>
-          <div>
+          <div *ngIf="flaglang == 'ltr'">
             <i class="far fa-check-circle text-success"></i>
-            <span>Quality Score:</span><span class="fw-bold">Average</span>
+            <span  >Quality Score:</span><span class="fw-bold">Average</span>
           </div>
-          <div>
+          <div *ngIf="flaglang == 'ltr'">
             <i class="fas fa-star text-primary"></i>
-            <span>Quality Score:</span><span class="fw-bold">Good</span>
+            <span  >Quality Score:</span><span class="fw-bold">Good</span>
           </div>
         </div>
       </div>
@@ -168,7 +216,9 @@
           style="border-bottom: 1px solid #ededed"
           class="d-block py-2 m-3"
         >
-          <h2 class="title-lg">Product details</h2>
+          <h2 *ngIf="flaglang == 'ltr'" class="title-lg">Product details</h2>
+          <h2 *ngIf="flaglang == 'rtl'" class="title-lg">تفاصيل المنتج</h2>
+
         </header>
         <div class="mx-3 py-4 headline" style="overflow-x: auto">
           <span *ngIf="flaglang == 'ltr'" class="d-block">{{
@@ -185,15 +235,18 @@
     <!--start fisrt col-->
     <div class="col-lg-9 col-sm-12 px-2">
       <!-- RelatedProducts -->
-      <div class="empty" *ngIf="products.length < 1">
+      <!-- <div  class="empty" *ngIf="products.length < 1">
         <div class="info">
-          <h4>No Related Products</h4>
+          <h4 >No Related Products</h4>
           <a routerLink="" class="btn btn-success">Start Shoping </a>
         </div>
-      </div>
+      </div> -->
       <div class="row bg-white rounded card" *ngIf="products.length > 1">
-        <h3 style="border-bottom: 1px solid #ededed" class="p-3">
+        <h3 *ngIf="flaglang=='ltr'" style="border-bottom: 1px solid #ededed" class="p-3">
           Related items
+        </h3>
+        <h3 *ngIf="flaglang=='rtl'" style="border-bottom: 1px solid #ededed" class="p-3">
+         منتجات ذات صلة
         </h3>
         <div class="d-flex" style="flex-wrap: wrap">
           <div

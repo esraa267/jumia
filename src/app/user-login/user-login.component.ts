@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../Services/Authontication/auth.service';
 import { CartServiceService } from '../Services/Cart/cart-service.service';
+import { ProductsService } from '../Services/Products/products.service';
 import { ICart } from '../ViewModels/icart';
 
 @Component({
@@ -11,6 +12,7 @@ import { ICart } from '../ViewModels/icart';
   styleUrls: ['./user-login.component.css'],
 })
 export class UserLoginComponent implements OnInit, OnDestroy {
+  flaglang: string = '';
   errorMes?: string;
   islogin?: boolean;
   sub!: Subscription;
@@ -18,11 +20,17 @@ export class UserLoginComponent implements OnInit, OnDestroy {
   constructor(
     private as: AuthService,
     private router: Router,
-    private CertServc: CartServiceService
+    private CertServc: CartServiceService,
+    private productServc:ProductsService
   ) {}
   ngOnDestroy(): void {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.productServc.lang.subscribe((e) => {
+      this.flaglang = e;
+     
+    });
+  }
   login(form: any) {
     let data = form.value;
     this.as.login(data.email, data.password).subscribe(() => {

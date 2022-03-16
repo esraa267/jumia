@@ -133,14 +133,11 @@ export class SellerRegisterComponent implements OnInit {
   Signup() {
     let SellerModel: ISeller = this.SellerRegisForm.value as ISeller;
 
-    this.AuthService.Signup(
-      SellerModel.Email!,
-      SellerModel.Password!
-    ).subscribe(() => {
-      if (localStorage.getItem('uid')) {
-        this.errorMessage = '';
+    this.AuthService.SignupSeller(SellerModel.Email!,SellerModel.Password!).subscribe(() => {
+      if (localStorage.getItem('sid')) {
+       
         this.SellerServ.registerSeller(
-          localStorage.getItem('uid')!,
+          localStorage.getItem('sid')!,
           SellerModel
         ).then(() => {
           this.router.navigate(['/Products']);

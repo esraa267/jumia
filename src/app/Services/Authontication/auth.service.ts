@@ -31,13 +31,30 @@ export class AuthService {
       this.auth
         .createUserWithEmailAndPassword(email, password)
         .then((e) => {
-          this.user?.subscribe(() => (this.User.next( true)));
+        //  this.user?.subscribe(() => (this.User.next( true)));
          // this.userID = e.user!.uid;
           localStorage.setItem('uid',e.user?.uid!)
           this.User.next(true);
         })
         .catch(() => {
           this.user?.subscribe(() => (this.User.next( false)));
+          this.errorMsg = 'Email Already Exist';
+        })
+    );
+  }
+  SignupSeller(email: string, password: string){
+    return from(
+      this.auth
+        .createUserWithEmailAndPassword(email, password)
+        .then((e) => {
+          localStorage.setItem('sid',e.user?.uid!)
+         // this.user?.subscribe(() => (this.User.next( true)));
+         // this.userID = e.user!.uid;
+          //localStorage.setItem('uid',e.user?.uid!)
+         // this.User.next(true);
+        })
+        .catch(() => {
+         // this.user?.subscribe(() => (this.User.next( false)));
           this.errorMsg = 'Email Already Exist';
         })
     );
