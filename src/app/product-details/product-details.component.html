@@ -1,0 +1,303 @@
+<div *ngIf="flag" class="alert text-center p-1 fs-5 alertApp" role="alert">
+  <i class="fas fa-check-circle px-3"></i>
+  Product added successfully
+</div>
+<div *ngIf="qntflag" class="alert text-center p-1 fs-5 alertApp" role="alert">
+  <i class="fas fa-check-circle px-3"></i>
+  Oops! that is last item
+</div>
+<div class="container-sm container-md container-lg">
+  <div class="row mt-2 pt-1" style="display: flex; flex-wrap: wrap">
+    <!--start fisrt col-->
+    <section
+      class="col-lg-9 col-sm-12 px-2"
+      style="display: flex; flex-direction: column"
+    >
+      <div
+        class="row card bg-body p-1"
+        style="display: flex; flex-direction: row"
+      >
+        <!--start fisrt col i first col-->
+        <div class="col-lg-4 col-sm-12">
+          <div>
+            <img
+              style="cursor: zoom-in"
+              id="itemimg"
+              [src]="product?.Image"
+              width="100%"
+              alt=""
+            />
+          </div>
+        </div>
+        <!--start second col in first col-->
+        <div class="col-lg-8 col-sm-12">
+          <div class="d-flex justify-content-between text-start mt-3">
+            <div class="px-3">
+              <p class="fs-4 fw-bold" *ngIf="flaglang == 'ltr'" id="itemtitle">
+                {{ product?.Description }}
+              </p>
+
+              <p></p>
+              <h2 *ngIf="flaglang == 'rtl'" id="itemtitle">
+                {{ product?.DescriptionAr }}
+              </h2>
+            </div>
+
+            <!-- start saveItem -->
+            <div [hidden]="!uid" class="px-2">
+              <div class="py-3">
+                <a type="button" (click)="save(product)">
+                  <i class="far fa-heart fs-2 text-warning"></i>
+                </a>
+              </div>
+            </div>
+            <!-- end saveitem -->
+          </div>
+          <div style="text-align: left" class="px-3 text-dark">
+            <div class="py-1 my-2 headline" style="position: relative">
+              <p style="font-weight: 900; font-size: 1.2rem">
+                {{ product?.Price | currency: "EGP" }}
+              </p>
+            </div>
+          </div>
+          <!--button-->
+          <div class="px-2">
+            <div class="pt-1" style="border-bottom: 1px solis #ededed">
+              <button
+              [disabled]="btnFlag"
+                type="button"
+                (click)="addToCart(product)"
+                style="
+                  background-color: rgb(246, 139, 30);
+                  width: 100%;
+                  color: #fff;
+                "
+                class="btn shadow rounded"
+              >
+                <i class="fas fa-shopping-cart px-3"></i>
+                <span *ngIf="flaglang == 'ltr'" class="px-3">Add to card</span>
+                <span *ngIf="flaglang == 'rtl'" class="px-3"
+                  >اضف الى العربة</span
+                >
+              </button>
+            </div>
+          </div>
+          <!--promotion-->
+          <section style="position: relative" class="mt-3">
+            <h5 class="title-h headline pt-4">PROMOTIONS</h5>
+            <div class="py-3">
+              <a class="d-flex text-decoration-none text-dark py-1">
+                <i
+                  class="fas fa-crown fs-3 text-warning me-3 align-self-baseline"
+                ></i>
+                Get Free Delivery on your next order with Jumia Prime
+              </a>
+              <a class="d-flex text-decoration-none text-dark py-1">
+                <i
+                  class="fas fa-shield-alt fs-3 text-warning me-3 align-self-baseline"
+                ></i>
+                Enjoy 50% cashback on bills payment - Code: WELCOME50 - for new
+                customers only</a
+              >
+            </div>
+          </section>
+        </div>
+        <!--start third col i first col-->
+      </div>
+    </section>
+
+    <section class="col-lg-3 col-sm-12 px-2">
+      <!--start seller information div -->
+      <div class="card p-2 bg-body rounded">
+        <a
+          [routerLink]="['/Seller', seller.sellerid]"
+          style="
+            text-transform: uppercase;
+            cursor: pointer;
+            border-bottom: 1px solid lightgrey;
+          "
+          class="d-flex justify-content-between p-2 text-decoration-none text-dark"
+        >
+          <h2 style="font-weight: bold; font-size: 0.8rem" class="m-0">
+            Seller information
+          </h2>
+          <svg
+            width="10%"
+            height="20px"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 256 512"
+          >
+            <path
+              d="M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z"
+            />
+          </svg>
+        </a>
+        <div
+          class="p-2"
+          style="border-bottom: 1px solid lightgrey; font-weight: 500"
+        >
+          <p style="font-weight: 700; margin: 0; color: #f68b1e">
+            {{ seller.FirstName }}
+          </p>
+        </div>
+        <div class="p-2" style="position: relative">
+          <h2 style="font-weight: bold; font-size: 1.2rem" class="mb-1">
+            Seller Performance
+          </h2>
+          <div>
+            <i class="fas fa-star text-primary"></i>
+            <span>Order Fulfillment Rate:</span
+            ><span class="fw-bold">Good</span>
+          </div>
+          <div>
+            <i class="far fa-check-circle text-success"></i>
+            <span>Quality Score:</span><span class="fw-bold">Average</span>
+          </div>
+          <div>
+            <i class="fas fa-star text-primary"></i>
+            <span>Quality Score:</span><span class="fw-bold">Good</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="row mt-2 pt-1">
+    <section class="col-lg-9 col-sm-12 px-2">
+      <div class="card bg-body p-1">
+        <header
+          style="border-bottom: 1px solid #ededed"
+          class="d-block py-2 m-3"
+        >
+          <h2 class="title-lg">Product details</h2>
+        </header>
+        <div class="mx-3 py-4 headline" style="overflow-x: auto">
+          <span *ngIf="flaglang == 'ltr'" class="d-block">{{
+            product?.Description
+          }}</span>
+          <span *ngIf="flaglang == 'rtl'" class="d-block">{{
+            product?.DescriptionAr
+          }}</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="row mt-2 pt-1">
+    <!--start fisrt col-->
+    <div class="col-lg-9 col-sm-12 px-2">
+      <!-- RelatedProducts -->
+      <div class="empty" *ngIf="products.length < 1">
+        <div class="info">
+          <h4>No Related Products</h4>
+          <a routerLink="" class="btn btn-success">Start Shoping </a>
+        </div>
+      </div>
+      <div class="row bg-white rounded card" *ngIf="products.length > 1">
+        <h3 style="border-bottom: 1px solid #ededed" class="p-3">
+          Related items
+        </h3>
+        <div class="d-flex" style="flex-wrap: wrap">
+          <div
+            *ngFor="let item of products"
+            class="card col-lg-2 m-3 me-1 col-md-4 col-sm-6 product"
+          >
+            <a
+              [routerLink]="['/Products', item.id]"
+              [queryParams]="{ query: item.Category }"
+              class="text-decoration-none text-dark"
+            >
+              <img
+                class="card-img-top"
+                [src]="item.Image"
+                alt="Card image"
+                style="width: 100%"
+              />
+              <div class="card-body">
+                <!-- <small>{{item.Name}}</small> -->
+                <small *ngIf="flaglang == 'ltr'">{{ item.Category }}</small>
+                <small *ngIf="flaglang == 'rtl'">{{ item.CategoryAr }}</small>
+                <h6 class="card-title">EGP {{ item.Price }}</h6>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="lastview" class="col-lg-3">
+      <div class="" style="position: sticky; top: 72px">
+        <article class="card p-2 rounded-4">
+          <div class="d-flex">
+            <img
+              class="rounded"
+              style="width: 100px; height: 100px"
+              [src]="product?.Image"
+              alt=""
+            />
+            <div style="text-align: right">
+              <p *ngIf="flaglang == 'ltr'" class="cut-title">
+                {{ product?.Name }}
+              </p>
+              <p *ngIf="flaglang == 'rtl'" class="cut-title">
+                {{ product?.NameAr }}
+              </p>
+              <div class="py-2">
+                <span class="title-h">{{
+                  product?.Price | currency: "EGP"
+                }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <button
+              type="button"
+              (click)="addToCart(product)"
+              style="background-color: #f68b1e; width: 100%; color: white"
+              class="btn mt-2 py-2 shadow fs-5"
+            >
+              Add to cart
+              <i class="fas fa-shopping-cart px-3"></i>
+            </button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-2 pt-1">
+    <div class="col-lg-9 col-sm-12">
+      <section class="row bg-white rounded card">
+        <h3 style="border-bottom: 1px solid #ededed" class="p-3">
+          Verified Customer Feedback
+        </h3>
+
+        <div class="d-flex flex-column px-3">
+          <article *ngFor="let item of feedBacks" class="py-2 px-4">
+            <div class="py-1">
+              <div class="stars">
+                <div class="in"></div>
+              </div>
+            </div>
+            <h2 class="title-h py-2">{{ item.feedback }}</h2>
+
+            <div
+              class="d-flex justify-content-between align-items-center fs-5"
+              style="color: gray"
+            >
+              <div>
+                <span class="pe-2">{{ item.date }}</span>
+              </div>
+              <div class="d-flex align-items-center" style="color: #6dbd28">
+                <i class="far fa-check-circle"></i>
+                <span>Verified Purchase</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+  </div>
+  <!-- <div>
+    
+    
+   
+  </div> -->
+</div>

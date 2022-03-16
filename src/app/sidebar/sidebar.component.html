@@ -1,0 +1,56 @@
+<ul class="nav nav-pills flex-column mb-auto" *ngFor="let item of categorys">
+  <li>
+    <a
+      *ngIf="flag == 'ltr'"
+      [routerLink]="['/category']"
+      [queryParams]="{ query: item.name }"
+      class="nav-link link-dark"
+    >
+      {{ item.name }}
+    </a>
+    <a
+      *ngIf="flag == 'rtl'"
+      [routerLink]="['/category']"
+      [queryParams]="{ query: item.name }"
+      class="nav-link link-dark"
+    >
+      {{ item.NameAr }}
+    </a>
+  </li>
+
+  <!-- <li>
+      <a routerLink="/category" class="nav-link link-dark">
+        <i class="fas fa-hat-winter"></i> Fashon
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link link-dark">
+        <i class="bi bi-controller"></i> Games
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link link-dark">
+        <i class="bi bi-heart-fill"></i> Health & Beauty
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link link-dark">
+        <i class="bi bi-robot"></i> Baby products
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link link-dark">
+        <i class="bi bi-phone-fill"></i> Phone & Tablets
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link link-dark">
+        <i class="bi bi-house-door"></i> Home & Office
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link link-dark">
+        <i class="bi bi-tv-fill"></i> Electronics
+      </a>
+    </li> -->
+</ul>

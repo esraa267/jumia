@@ -1,0 +1,91 @@
+/*NAV*/
+nav{
+  padding:30px;
+
+}
+.log{
+ width: 138px;
+ height:auto;
+ top: 0;
+ margin-bottom:20px;
+}
+.searchbut
+{
+ margin-left: 20px;
+ width: 100px;
+ height: 45px;
+ text-align: center;
+ background-color: rgb(246, 139, 30);
+ border: none;
+ border-radius: 5px;
+ -webkit-border-radius: 5px;
+ -moz-border-radius: 5px;
+ -ms-border-radius: 5px;
+ -o-border-radius: 5px;
+ color: white;
+ 
+ font-size: 18px;
+}
+.searchbut:hover
+{
+ background-color: rgb(228, 129, 28);
+}
+/* .cartitem{
+  position: absolute;
+  top:35%;
+  color: rgb(228, 129, 28) ;
+} */
+.sellOn{
+  color: rgb(246, 139, 30);
+  text-decoration: none;
+
+}
+.sellOn:hover{
+  color: rgb(228, 129, 28);
+
+}
+.lang:hover{
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  direction: ltr;
+  color: inherit;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  font-size: .75rem;
+  cursor: pointer;
+  top:-550px
+
+}
+.sell{
+  margin-left:100px;
+}
+.cartitem{
+  position: absolute;
+  top: 0px;
+  right: 0;
+  background-color: orange;
+  border-radius: 50%;
+  padding: 0px 5px;
+  color: white;
+  font-size: 0.9rem;
+
+}
+@media only screen and (max-width: 600px){
+	.sell{
+    text-align: center;
+  }
+  .lang{
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    color: inherit;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    font-size: .75rem;
+    cursor: pointer;
+    top:0px
+  }
+  
+}

@@ -1,0 +1,33 @@
+<div *ngIf="flag" class="d-flex flex-column justify-content-center">
+  <div class="mt-5 d-flex justify-content-center">
+  
+    <textarea
+      #feedback="ngModel"
+      ngModel
+      minlength="5"
+      rows="3"
+      placeholder=" Give Your FeedBack..."
+      required
+      class="force-opaque"
+
+    ></textarea>
+  </div>
+
+  <div class="mt-5 d-flex justify-content-center">
+    <button
+      [disabled]="feedback.errors || feedback.untouched"
+      class="btn btn-success"
+      (click)="submitBack(feedback.value)"
+      type="button"
+    >
+      Send
+    </button>
+  </div>
+</div>
+
+<div class="empty mt-5 d-flex justify-content-center" *ngIf="!flag">
+  <div class="info">
+    <h4>you gived feedback</h4>
+    <a routerLink="#" class="btn btn-success">Start Shoping </a>
+  </div>
+</div>
