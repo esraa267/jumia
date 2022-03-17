@@ -34,7 +34,7 @@ const routes: Routes = [
   },
   { path: 'SellerRegister', component: SellerRegisterComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'OrderDetails/:id', component: OrderdetailsComponent },
+  { path: 'OrderDetails/:id', component: OrderdetailsComponent,canActivate: [AuthGuardService] },
   {
     path: 'paypal',
     component: PaypalComponent,

@@ -144,11 +144,11 @@ export class ProductDetailsComponent implements OnInit {
     console.log(id);
     
     let userId = localStorage.getItem('uid');
-    this.fc.checkITem(userId, this.productId).subscribe((res) => {
+    let x=this.fc.checkITem(userId, this.productId).subscribe((res) => {
       if (res.length == 0) {
         this.fc.addToFavourite(userId, {...id,prdid: this.productId});
       }
-
+x.unsubscribe()
     });
 
     console.log('add');
